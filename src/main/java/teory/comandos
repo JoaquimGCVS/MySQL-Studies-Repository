@@ -36,7 +36,7 @@
         default character set utf8mb4
         default collate utf8mb4_unicode_ci;
     - Criar tabela
-        CREATE TABLE pessoas (
+        CREATE TABLE IF EXISTS pessoas (
             id INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único para cada registro, incrementado automaticamente.
             nome VARCHAR(30) NOT NULL, -- Campo obrigatório para armazenar o nome (máximo: 30 caracteres).
             nascimento DATE, -- Campo para armazenar datas no formato AAAA-MM-DD.
@@ -68,6 +68,35 @@
     ('Anna','2006-02-09','M','70.5','1.71','Brasil'),
     ('Pedro','2006-02-09','M','70.5','1.71','Brasil');
 
+--> Alterar estrutura de uma tabela
+    Adicionar coluna(campo):
+        ALTER TABLE tabela_name
+        ADD COLUMN profissao varchar(30); //alteracao exemplo
+    Remover campo:
+        ALTER TABLE tabela_nome
+        DROP COLUMN profissao;
+    Adicionar em posicao especifica:
+        ALTER TABLE tabela_nome
+        ADD COLUMN profissao varchar(30) AFTER nome;
 
+        ou tambem para ser o primeiro
 
+        ALTER TABLE pessoas
+        ADD COLUMN profissao varchar(30)FIRST;
+
+    Renomear tabela:
+        ALTER TABLE pessoas
+        RENAME TO people;
+
+    Remover uma tabela:
+        DROP TABLE IF EXISTS tabela_name;
+--> Alterar estrutura de uma definicao(campo)
+        ALTER TABLE pessoas
+        MODIFY COLUMN profissao varchar(50) not null default; '' // foi de 30 para 50 caracteres e nao pode ser nulo
+        e seu valor default eh == vazio ('')
+--> Renomear campo
+        ALTER TABLE pessoas
+        CHANGE COLUMN profissao prof varchar(20);  //eh necessario renomear e reescrever todas as constraints que ele tem
+
+// TODAS OS COMANDOs COM COLUMN, NAO HA NECESSIDADE DEESCREVER COLUMN
 
