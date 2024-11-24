@@ -1,0 +1,55 @@
+--> Banco de dados
+Estrutura:
+    - Base de dados:
+        Conjunto organizado de informações/dados armazenados digitalmente para o acesso, gerenciamento e atualização.
+        Pode conter tabelas, registros, índices e relacionamentos entre os dados.
+    - Sistema Gerenciador de Banco de Dados (SGBD):
+        Software que permite criar, gerenciar e consultar bancos de dados, garantindo integridade, segurança e eficiência no acesso
+        aos dados.
+    - Linguagens de exploração:
+        Ferramentas, como SQL, usadas para consultar, manipular e analisar os dados em um banco de dados de forma
+        estruturada e eficiente.
+    - Programas adicionais:
+        Aplicações complementares ao SGBD, como ferramentas de backup, replicação, monitoramento de desempenho ou interfaces gráficas
+        para facilitar a administração do banco.
+
+--> SQL
+O que é?
+    É uma linguagem de consulta estruturada (SQL - Structured Query Language) usada para interagir com bancos de dados.
+    Ela permite criar, manipular, consultar e controlar dados armazenados em um banco de dados.
+
+Como funciona?
+    O usuário utiliza comandos SQL para fazer consultas, inserções, atualizações ou exclusões no banco de dados, e o sistema
+    retorna resultados ou confirmações com base nos comandos executados.
+
+Conceito "Query"(consulta):
+    - Eh uma solicitação feita a um banco de dados para buscar, inserir, atualizar ou excluir dados.
+    - Quando você escreve uma query, está essencialmente perguntando ao banco de dados algo específico, como "quais são todos os
+    clientes que fizeram uma compra no mês passado?" ou "atualize o preço de um produto para X".
+
+    O resultado de uma query depende do seu objetivo:
+
+    - Consultas (SELECT): Retornam dados do banco de dados, que podem ser visualizados ou usados em outras operações.
+    - Modificação (INSERT, UPDATE, DELETE): Alteram os dados existentes, mas não retornam dados diretamente, a não ser que solicitado.
+
+    Exemplo de consulta (query) em SQL:
+
+        SELECT nome, idade FROM clientes WHERE idade > 18;
+
+    Esse comando SQL é uma query que retorna os nomes e idades dos clientes que têm mais de 18 anos.
+
+-->Composicao do banco de dados:
+    -Banco de dados (navio)
+        Agrupa colecoes de tabelas com dados
+    - Tabelas (containers)
+        Agrupas diferentes tipos de dados/registros
+    - Dados/Registros/Tuplas (produtos)
+        Agrupa divergentes tipos de campos, como:
+            (varchar)nome,
+            (long)id,
+            (varchar)email,
+            (int)idade,
+            etc;
+
+
+

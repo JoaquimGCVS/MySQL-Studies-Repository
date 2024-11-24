@@ -1,0 +1,73 @@
+--> Criar BD:
+    - No my sql comand line ou workbench, entrar no servidor com sua password
+    - Digitar o seguinte comando:
+        CREATE DATABASE nome_do_bd;
+--> Criar tabela:
+    - Limpar console(terminal)
+    - Definir qual bd vai ser utilizado, comando:
+        USE nome_do_bd;
+    - Comando;
+        CREATE TABLE nome_da_tabela(
+        tipo_primitivo campo, // int , varchar(String tamanho (var)variavel), String char (tamanho fixo)
+        tipo_complexo campo, //enum , JSON
+        tipo campo ;; ultimo nao tem virgula, igual enum em java
+        );
+
+// boa pratica aleatoria --> NAO SE SALVA IDADE NO BANCO DE DADOS, JA QUE SEMPRE MUDA, SE SALVA DATA DE NASCIMENTO
+
+--> Ver qual bd esta sendo utilizado:
+    -Comando
+        STATUS;
+--> Ver detalhadamente campos da tabela:
+    -Comando:
+        DESCRIBE nome_da_tabela;
+
+--> Ver todos bancos de dados criados no seu servidor:
+    -Coamndo:
+        SHOW DATABASES;
+
+--> Apagar banco de dados:
+    -Comando:
+        DROP DATABASE nome_do_bd;
+
+--> Processo de bd com boas praticas:
+    - Criar BD(ex cadastro):
+        create database cadastro
+        default character set utf8mb4
+        default collate utf8mb4_unicode_ci;
+    - Criar tabela
+        CREATE TABLE pessoas (
+            id INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único para cada registro, incrementado automaticamente.
+            nome VARCHAR(30) NOT NULL, -- Campo obrigatório para armazenar o nome (máximo: 30 caracteres).
+            nascimento DATE, -- Campo para armazenar datas no formato AAAA-MM-DD.
+            sexo ENUM('M', 'F'), -- Define valores limitados para o campo: 'M' (masculino) ou 'F' (feminino).
+            peso DECIMAL(5,2), -- Permite valores numéricos até 999.99 (5 dígitos no total, 2 após o ponto decimal).
+            altura DECIMAL(3,2), -- Permite valores numéricos até 9.99 (3 dígitos no total, 2 após o ponto decimal).
+            nacionalidade VARCHAR(20) DEFAULT 'Brasil' -- Define o valor padrão como 'Brasil' caso não seja preenchido.
+        ) DEFAULT CHARSET = utf8mb4; -- Usa o charset utf8mb4 para suporte completo a caracteres Unicode.
+
+--> Inserir valores na tabela (ex pessoas)
+    insert into pessoas
+    (id, nome, nascimento, sexo, peso, altura, nacionalidade)
+    values
+    ('1','Joaquim','2006-02-09','M','70.5','1.71','Brasil');
+
+    //NAO HA NECESSIDADE DE DAR O ID, JA QUE ELE EH AUTO_INCREMENT
+
+    portanto, forma correta:
+    insert into pessoas
+    (nome, nascimento, sexo, peso, altura, nacionalidade)
+    values
+    ('Joaquim','2006-02-09','M','70.5','1.71','Brasil');
+
+    //SE A ORDEM DE INSERCAO DOS DADOS FOR IGUL A ORDEM JA EXISTENTE DOS CAMPOS NA TABELA, NAO HA NECESSIDADE DE ESCREVER OS CAMPOS4
+
+    portanto, seria, com mais pessoas de uma vez tambem:
+    insert into pessoas values
+    ('Joaquim','2006-02-09','M','70.5','1.71','Brasil'),
+    ('Anna','2006-02-09','M','70.5','1.71','Brasil'),
+    ('Pedro','2006-02-09','M','70.5','1.71','Brasil');
+
+
+
+
