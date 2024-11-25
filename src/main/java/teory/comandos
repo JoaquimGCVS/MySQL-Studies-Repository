@@ -104,3 +104,82 @@
 // TODOS OS COMANDOS COM COLUMN, NÃO HÁ NECESSIDADE DE ESCREVER COLUMN
 
 --> Manipulando linhas (tuplas):
+    UPDATE
+        O comando UPDATE é usado para alterar os dados de um ou mais registros existentes em uma tabela.
+
+    Sintaxe:
+
+        UPDATE nome_da_tabela
+        SET campo = novo_valor
+        WHERE condição;
+        Exemplo: Corrigir o nome do curso com idcurso = 5 de "Jarva" para "Java":
+
+    UPDATE cursos
+    SET nome = 'Java'
+    WHERE idcurso = 5;
+    2. DELETE
+    O comando DELETE é usado para remover registros específicos de uma tabela com base em uma condição.
+
+    Sintaxe:
+
+    DELETE FROM nome_da_tabela
+    WHERE condição;
+    Exemplo: Excluir o curso com idcurso = 10:
+
+    DELETE FROM cursos
+    WHERE idcurso = 10;
+    ⚠️ Sem o WHERE, todos os registros serão removidos, mas a estrutura da tabela será preservada.
+
+    3. TRUNCATE
+    O comando TRUNCATE é usado para remover todos os registros de uma tabela de forma rápida e eficiente. Ele reseta os contadores de IDs automaticamente (em tabelas que usam AUTO_INCREMENT).
+
+    Sintaxe:
+
+    TRUNCATE TABLE nome_da_tabela;
+    Exemplo: Remover todos os registros da tabela cursos:
+
+    TRUNCATE TABLE cursos;
+    ⚠️ Não é possível usar uma condição (WHERE) com TRUNCATE. Ele apaga todos os registros da tabela.
+
+    Diferenças principais:
+    UPDATE: Altera valores específicos em registros.
+    DELETE: Remove registros específicos, mantendo a estrutura da tabela e os contadores.
+    TRUNCATE: Remove todos os registros de forma mais rápida, reseta contadores e não pode ser usado com condições.
+
+--> Uso do LIMIT
+    Eh uma acao de seguranca para acoes DML, que definem o limite de egistros que serao alterados,
+    de acordo com o comando de update ou delete;
+    Ex de uso:
+        UPDATE pessoas
+        SET nome = 'Joaquim'
+        WHERE id=1
+        LIMIT 1;
+
+        ou
+
+        DELETE FROM pessoas
+        WHERE idade > 30
+        LIMIT 5;
+
+--> Fazendo dump pelo Prompt de comando do WINDOWS
+    dump == back-up de um banco de dados
+    Exemplo prático:
+    1- Abrir prompt
+    2- Executar:
+        mysqldump -u root -p meu_banco > meu_banco_dump.sql
+        -u root: Substitua root pelo nome do seu usuário MySQL.
+        -p: Solicita a senha do usuário MySQL (digite após o comando e pressione Enter).
+        meu_banco: Substitua pelo nome do banco que você quer fazer o dump.
+        meu_banco_dump.sql: Nome do arquivo onde o dump será salvo.
+    3- Inserir a Senha
+        Após pressionar Enter, será solicitado que você insira a senha do usuário MySQL. Digite a senha e pressione Enter.
+
+    4- Verificar o Arquivo Gerado
+        O arquivo meu_banco_dump.sql será criado no diretório onde você executou o comando.
+        Esse arquivo contém o backup completo do banco de dados.
+
+--> Fazendo dump de todos bd`s
+
+    mysqldump -u root -p --all-databases > todos_bancos_dump.sql
+
+
