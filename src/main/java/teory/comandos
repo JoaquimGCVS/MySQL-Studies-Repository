@@ -1,42 +1,44 @@
 --> Criar BD:
-    - No my sql comand line ou workbench, entrar no servidor com sua password
+    - No MySQL Command Line ou Workbench, entrar no servidor com sua senha.
     - Digitar o seguinte comando:
         CREATE DATABASE nome_do_bd;
+
 --> Criar tabela:
-    - Limpar console(terminal)
-    - Definir qual bd vai ser utilizado, comando:
+    - Limpar console (terminal).
+    - Definir qual BD vai ser utilizado, comando:
         USE nome_do_bd;
-    - Comando;
-        CREATE TABLE nome_da_tabela(
-        tipo_primitivo campo, // int , varchar(String tamanho (var)variavel), String char (tamanho fixo)
-        tipo_complexo campo, //enum , JSON
-        tipo campo ;; ultimo nao tem virgula, igual enum em java
+    - Comando:
+        CREATE TABLE nome_da_tabela (
+            tipo_primitivo campo, -- int, varchar(String tamanho (var)variavel), String char (tamanho fixo)
+            tipo_complexo campo, -- enum, JSON
+            tipo campo -- último não tem vírgula, igual enum em Java
         );
 
-// boa pratica aleatoria --> NAO SE SALVA IDADE NO BANCO DE DADOS, JA QUE SEMPRE MUDA, SE SALVA DATA DE NASCIMENTO
+// boa prática: NÃO SE SALVA IDADE NO BANCO DE DADOS, JÁ QUE SEMPRE MUDA, SE SALVA DATA DE NASCIMENTO.
 
---> Ver qual bd esta sendo utilizado:
-    -Comando
+--> Ver qual BD está sendo utilizado:
+    - Comando:
         STATUS;
+
 --> Ver detalhadamente campos da tabela:
-    -Comando:
+    - Comando:
         DESCRIBE nome_da_tabela;
 
 --> Ver todos bancos de dados criados no seu servidor:
-    -Coamndo:
+    - Comando:
         SHOW DATABASES;
 
 --> Apagar banco de dados:
-    -Comando:
+    - Comando:
         DROP DATABASE nome_do_bd;
 
---> Processo de bd com boas praticas:
-    - Criar BD(ex cadastro):
-        create database cadastro
-        default character set utf8mb4
-        default collate utf8mb4_unicode_ci;
-    - Criar tabela
-        CREATE TABLE IF EXISTS pessoas (
+--> Processo de BD com boas práticas:
+    - Criar BD (ex: cadastro):
+        CREATE DATABASE cadastro
+        DEFAULT CHARACTER SET utf8mb4
+        DEFAULT COLLATE utf8mb4_unicode_ci;
+    - Criar tabela:
+        CREATE TABLE IF NOT EXISTS pessoas (
             id INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único para cada registro, incrementado automaticamente.
             nome VARCHAR(30) NOT NULL, -- Campo obrigatório para armazenar o nome (máximo: 30 caracteres).
             nascimento DATE, -- Campo para armazenar datas no formato AAAA-MM-DD.
@@ -46,43 +48,42 @@
             nacionalidade VARCHAR(20) DEFAULT 'Brasil' -- Define o valor padrão como 'Brasil' caso não seja preenchido.
         ) DEFAULT CHARSET = utf8mb4; -- Usa o charset utf8mb4 para suporte completo a caracteres Unicode.
 
---> Inserir valores na tabela (ex pessoas)
-    insert into pessoas
+--> Inserir valores na tabela (ex: pessoas):
+    INSERT INTO pessoas
     (id, nome, nascimento, sexo, peso, altura, nacionalidade)
-    values
-    ('1','Joaquim','2006-02-09','M','70.5','1.71','Brasil');
+    VALUES
+    (1, 'Joaquim', '2006-02-09', 'M', 70.5, 1.71, 'Brasil');
 
-    //NAO HA NECESSIDADE DE DAR O ID, JA QUE ELE EH AUTO_INCREMENT
+    // NÃO HÁ NECESSIDADE DE DAR O ID, JÁ QUE ELE É AUTO_INCREMENT
 
-    portanto, forma correta:
-    insert into pessoas
+    Portanto, forma correta:
+    INSERT INTO pessoas
     (nome, nascimento, sexo, peso, altura, nacionalidade)
-    values
-    ('Joaquim','2006-02-09','M','70.5','1.71','Brasil');
+    VALUES
+    ('Joaquim', '2006-02-09', 'M', 70.5, 1.71, 'Brasil');
 
-    //SE A ORDEM DE INSERCAO DOS DADOS FOR IGUL A ORDEM JA EXISTENTE DOS CAMPOS NA TABELA, NAO HA NECESSIDADE DE ESCREVER OS CAMPOS4
+    // SE A ORDEM DE INSERÇÃO DOS DADOS FOR IGUAL À ORDEM JÁ EXISTENTE DOS CAMPOS NA TABELA, NÃO HÁ NECESSIDADE DE ESCREVER OS CAMPOS
 
-    portanto, seria, com mais pessoas de uma vez tambem:
-    insert into pessoas values
-    ('Joaquim','2006-02-09','M','70.5','1.71','Brasil'),
-    ('Anna','2006-02-09','M','70.5','1.71','Brasil'),
-    ('Pedro','2006-02-09','M','70.5','1.71','Brasil');
+    Portanto, seria, com mais pessoas de uma vez também:
+    INSERT INTO pessoas VALUES
+    ('Joaquim', '2006-02-09', 'M', 70.5, 1.71, 'Brasil'),
+    ('Anna', '2006-02-09', 'M', 70.5, 1.71, 'Brasil'),
+    ('Pedro', '2006-02-09', 'M', 70.5, 1.71, 'Brasil');
 
---> Alterar estrutura de uma tabela
-    Adicionar coluna(campo):
+--> Alterar estrutura de uma tabela:
+    Adicionar coluna (campo):
         ALTER TABLE tabela_name
-        ADD COLUMN profissao varchar(30); //alteracao exemplo
+        ADD COLUMN profissao VARCHAR(30); -- alteração exemplo
     Remover campo:
-        ALTER TABLE tabela_nome
+        ALTER TABLE tabela_name
         DROP COLUMN profissao;
-    Adicionar em posicao especifica:
-        ALTER TABLE tabela_nome
-        ADD COLUMN profissao varchar(30) AFTER nome;
+    Adicionar em posição específica:
+        ALTER TABLE tabela_name
+        ADD COLUMN profissao VARCHAR(30) AFTER nome;
 
-        ou tambem para ser o primeiro
-
+        Ou também para ser o primeiro:
         ALTER TABLE pessoas
-        ADD COLUMN profissao varchar(30)FIRST;
+        ADD COLUMN profissao VARCHAR(30) FIRST;
 
     Renomear tabela:
         ALTER TABLE pessoas
@@ -90,13 +91,16 @@
 
     Remover uma tabela:
         DROP TABLE IF EXISTS tabela_name;
---> Alterar estrutura de uma definicao(campo)
-        ALTER TABLE pessoas
-        MODIFY COLUMN profissao varchar(50) not null default; '' // foi de 30 para 50 caracteres e nao pode ser nulo
-        e seu valor default eh == vazio ('')
---> Renomear campo
-        ALTER TABLE pessoas
-        CHANGE COLUMN profissao prof varchar(20);  //eh necessario renomear e reescrever todas as constraints que ele tem
 
-// TODAS OS COMANDOs COM COLUMN, NAO HA NECESSIDADE DEESCREVER COLUMN
+--> Alterar estrutura de uma definição (campo):
+        ALTER TABLE pessoas
+        MODIFY COLUMN profissao VARCHAR(50) NOT NULL DEFAULT ''; -- foi de 30 para 50 caracteres e não pode ser nulo
+        e seu valor default é vazio ('').
 
+--> Renomear campo:
+        ALTER TABLE pessoas
+        CHANGE COLUMN profissao prof VARCHAR(20); -- é necessário renomear e reescrever todas as constraints que ele tem
+
+// TODOS OS COMANDOS COM COLUMN, NÃO HÁ NECESSIDADE DE ESCREVER COLUMN
+
+--> Manipulando linhas (tuplas):
