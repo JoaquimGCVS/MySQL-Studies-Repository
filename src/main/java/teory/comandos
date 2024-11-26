@@ -182,4 +182,34 @@
 
     mysqldump -u root -p --all-databases > todos_bancos_dump.sql
 
+--> SELECT
+    - Selecionar todos os campos
+        select * from nome_tabela;
+    - Ordenar de acordo como coluna:
+        select * from nome_tabela order by nome_coluna;
+        select * from nome_tabela order by nome_coluna DESC; // ordena ao contrario //desc como parametro
+    //desc como comando que descreve, como parametro ordena inverso
+    - Filtrar as colunas exibidas
+        select coluna1,coluna2 from nome_tabela;
+    - Filtrar por lihas
+        select * from tabela where condicao;
+        select * from tabela where condicao order by nome_coluna;
+    - Filtrar entre valores
+        select * from tabele where ano between 2020 and 2023;  //precisam ser valores comparaveis
+        select * from tabele where ano between 2020 and 2023 order by ano desc, nome asc;
+        // ordena linhas com anos entre as datas de forma decrescente e alfabetica
+
+        select * from tabela where ano in (2020,2024); //anos correspondentes a estes
+
+    - Filtrar com operadores
+        AND
+        select * from tablea where idade > 20 and id = 2; //igual && todos devem estar corretos
+        OR
+        select * from tablea where idade > 20 or id = 2; //igual || pelo menos um correto\
+
+
+
+
+
+
 
